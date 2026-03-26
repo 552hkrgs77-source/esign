@@ -106,6 +106,7 @@
       <key>PayloadVersion</key><integer>1</integer>
       <key>PayloadIdentifier</key><string>com.esign.vpn.travail</string>
       <key>PayloadDisplayName</key><string>VPN Travail</string>
+      <key>PayloadUUID</key><string>11111111-1111-1111-1111-111111111111</string>
       <key>VPNType</key><string>IKEv2</string>
       <key>RemoteAddress</key><string>placeholder-vpn.com</string>
       <key>AuthName</key><string>user</string>
@@ -116,6 +117,7 @@
   <key>PayloadDisplayName</key><string>VPN Travail</string>
   <key>PayloadIdentifier</key><string>com.esign.config.vpn</string>
   <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadUUID</key><string>22222222-2222-2222-2222-222222222222</string>
   <key>PayloadVersion</key><integer>1</integer>
 </dict>
 </plist>`,
@@ -131,6 +133,7 @@
       <key>PayloadVersion</key><integer>1</integer>
       <key>PayloadIdentifier</key><string>com.esign.vpn.maison</string>
       <key>PayloadDisplayName</key><string>VPN Maison</string>
+      <key>PayloadUUID</key><string>33333333-3333-3333-3333-333333333333</string>
       <key>VPNType</key><string>WireGuard</string>
       <key>RemoteAddress</key><string>placeholder-wireguard.com</string>
     </dict>
@@ -138,6 +141,7 @@
   <key>PayloadDisplayName</key><string>VPN Maison</string>
   <key>PayloadIdentifier</key><string>com.esign.config.wireguard</string>
   <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadUUID</key><string>44444444-4444-4444-4444-444444444444</string>
   <key>PayloadVersion</key><integer>1</integer>
 </dict>
 </plist>`,
@@ -151,6 +155,8 @@
     <dict>
       <key>PayloadType</key><string>com.apple.wifi.managed</string>
       <key>PayloadVersion</key><integer>1</integer>
+      <key>PayloadIdentifier</key><string>com.esign.wifi.maison</string>
+      <key>PayloadUUID</key><string>55555555-5555-5555-5555-555555555555</string>
       <key>SSID_STR</key><string>MonWiFiMaison</string>
       <key>AutoJoin</key><true/>
     </dict>
@@ -158,6 +164,7 @@
   <key>PayloadDisplayName</key><string>Wi-Fi Maison + DNS</string>
   <key>PayloadIdentifier</key><string>com.esign.config.device</string>
   <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadUUID</key><string>66666666-6666-6666-6666-666666666666</string>
   <key>PayloadVersion</key><integer>1</integer>
 </dict>
 </plist>`
@@ -173,7 +180,7 @@
       a.click();
       URL.revokeObjectURL(url);
 
-      alert("✅ Profil téléchargé !\n\nOuvre le fichier dans Safari → il s’installe automatiquement dans :\nRéglages → Général → VPN et gestion de l’appareil");
+      alert("✅ Profil téléchargé !\n\nOuvre le fichier dans Safari → il s’installe dans :\nRéglages → Général → VPN et gestion de l’appareil");
     }
   </script>
 </body>
