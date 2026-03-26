@@ -1,0 +1,9 @@
+{
+  "name": "eSign Perso",
+  "short_name": "eSign",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#3b82f6",
+  "icons": [{ "src": "https://via.placeholder.com/192/1e3a8a/ffffff?text=ES", "sizes": "192x192", "type": "image/png" }]
+}
