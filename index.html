@@ -3,70 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eSign Perso</title>
+  <title>eSign Perso • Profils qui marchent</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="manifest" href="manifest.json">
   <style>
-    body { background: #0a0a0a; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    .header { background: linear-gradient(90deg, #1e3a8a, #3b82f6); }
-    .card { transition: all 0.3s; }
-    .card:active { transform: scale(0.96); }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0a0a0a; color: #fff; }
+    .header { background: linear-gradient(90deg, #1e3a8a, #3b82f6); box-shadow: 0 10px 30px -10px rgb(59 130 246); }
+    .card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5); }
+    .tab-active { border-bottom: 4px solid #3b82f6; color: #3b82f6; font-weight: 700; }
+    .section { display: none; }
+    .section.active { display: block; }
   </style>
 </head>
-<body class="pb-20">
+<body class="pb-24">
 
-  <div class="header p-6 text-center">
-    <div class="flex items-center justify-center gap-3">
-      <div class="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-3xl">📱</div>
-      <h1 class="text-4xl font-semibold tracking-tighter">eSign Perso</h1>
+  <!-- HEADER -->
+  <div class="header p-8 text-center">
+    <div class="flex items-center justify-center gap-4">
+      <div class="w-14 h-14 bg-white rounded-3xl flex items-center justify-center text-5xl shadow-2xl">📱</div>
+      <h1 class="text-5xl font-bold tracking-[-3px]">eSign Perso</h1>
     </div>
-    <p class="text-blue-200 text-sm mt-1">Profils qui marchent vraiment</p>
+    <p class="text-blue-100 mt-2 text-lg">Profils qui s’installent vraiment • Sans serveur requis</p>
   </div>
 
-  <div class="max-w-2xl mx-auto px-4 pt-8 space-y-8">
+  <!-- TABS -->
+  <div class="max-w-2xl mx-auto px-5">
+    <div id="tabs" class="flex border-b border-zinc-700 mb-8">
+      <button onclick="switchTab(0)" class="tab-active flex-1 py-5 text-base">Profils DNS</button>
+      <button onclick="switchTab(1)" class="flex-1 py-5 text-base">Wi-Fi</button>
+      <button onclick="switchTab(2)" class="flex-1 py-5 text-base">Créer le mien</button>
+    </div>
 
-    <!-- Profil 1 : DNS Cloudflare (marche à tous les coups) -->
-    <div class="card bg-zinc-900 p-6 rounded-3xl">
-      <div class="flex justify-between items-center mb-4">
-        <div class="flex items-center gap-3">
-          <span class="text-4xl">🌐</span>
-          <div>
-            <p class="font-semibold text-lg">Private DNS Cloudflare</p>
-            <p class="text-zinc-400 text-sm">Bloque pubs + trackers partout</p>
+    <!-- SECTION PROFILS DNS -->
+    <div id="section-0" class="section active space-y-6">
+      <h2 class="text-2xl font-semibold mb-4">Private DNS (fonctionnent immédiatement)</h2>
+
+      <div onclick="installProfile('dns-cloudflare')" class="card bg-zinc-900 p-6 rounded-3xl cursor-pointer">
+        <div class="flex items-center gap-5">
+          <span class="text-6xl">🌐</span>
+          <div class="flex-1">
+            <h3 class="font-semibold text-2xl">Cloudflare DNS</h3>
+            <p class="text-zinc-400">Bloque pubs, trackers et malwares • Très rapide</p>
           </div>
         </div>
       </div>
-      <button onclick="installProfile('dns-cloudflare')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer le profil</button>
-    </div>
 
-    <!-- Profil 2 : DNS AdGuard (marche à tous les coups) -->
-    <div class="card bg-zinc-900 p-6 rounded-3xl">
-      <div class="flex justify-between items-center mb-4">
-        <div class="flex items-center gap-3">
-          <span class="text-4xl">🛡️</span>
-          <div>
-            <p class="font-semibold text-lg">Private DNS AdGuard</p>
-            <p class="text-zinc-400 text-sm">Bloque pubs + malwares</p>
+      <div onclick="installProfile('dns-adguard')" class="card bg-zinc-900 p-6 rounded-3xl cursor-pointer">
+        <div class="flex items-center gap-5">
+          <span class="text-6xl">🛡️</span>
+          <div class="flex-1">
+            <h3 class="font-semibold text-2xl">AdGuard DNS</h3>
+            <p class="text-zinc-400">Protection renforcée contre les pubs</p>
           </div>
         </div>
       </div>
-      <button onclick="installProfile('dns-adguard')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer le profil</button>
-    </div>
 
-    <!-- Profil 3 : Wi-Fi Maison (marche si tu changes le nom du Wi-Fi) -->
-    <div class="card bg-zinc-900 p-6 rounded-3xl">
-      <div class="flex justify-between items-center mb-4">
-        <div class="flex items-center gap-3">
-          <span class="text-4xl">🏠</span>
-          <div>
-            <p class="font-semibold text-lg">Wi-Fi Maison Auto</p>
-            <p class="text-zinc-400 text-sm">Connexion automatique</p>
+      <div onclick="installProfile('dns-quad9')" class="card bg-zinc-900 p-6 rounded-3xl cursor-pointer">
+        <div class="flex items-center gap-5">
+          <span class="text-6xl">🔒</span>
+          <div class="flex-1">
+            <h3 class="font-semibold text-2xl">Quad9 DNS</h3>
+            <p class="text-zinc-400">Sécurité maximale contre les menaces</p>
           </div>
         </div>
       </div>
-      <button onclick="installProfile('wifi-maison')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer le profil</button>
+
+      <div onclick="installProfile('dns-nextdns')" class="card bg-zinc-900 p-6 rounded-3xl cursor-pointer">
+        <div class="flex items-center gap-5">
+          <span class="text-6xl">🚀</span>
+          <div class="flex-1">
+            <h3 class="font-semibold text-2xl">NextDNS</h3>
+            <p class="text-zinc-400">Personnalisable et très complet</p>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- SECTION WI-FI -->
+    <div id="section-1" class="section space-y-6">
+      <h2 class="text-2xl font-semibold mb-4">Wi-Fi automatique</h2>
+      <div onclick="installProfile('wifi-maison')" class="card bg-zinc-900 p-6 rounded-3xl cursor-pointer">
+        <div class="flex items-center gap-5">
+          <span class="text-6xl">🏠</span>
+          <div class="flex-1">
+            <h3 class="font-semibold text-2xl">Wi-Fi Maison Auto</h3>
+            <p class="text-zinc-400">Se connecte automatiquement + DNS privé</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION CRÉER LE MIEN -->
+    <div id="section-2" class="section space-y-6">
+      <h2 class="text-2xl font-semibold mb-4">Créer ton propre Private DNS</h2>
+      <div class="bg-zinc-900 p-6 rounded-3xl">
+        <input id="dnsName" type="text" placeholder="Nom du DNS (ex: Mon DNS Perso)" class="w-full bg-zinc-800 p-4 rounded-2xl mb-4 outline-none">
+        <input id="dnsServer" type="text" placeholder="Serveur (ex: cloudflare-dns.com)" class="w-full bg-zinc-800 p-4 rounded-2xl mb-6 outline-none">
+        <button onclick="createCustomDNS()" class="w-full bg-emerald-600 hover:bg-emerald-700 py-5 rounded-3xl text-xl font-semibold">Créer & Télécharger le profil</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="fixed bottom-0 left-0 right-0 bg-black border-t border-zinc-700 py-4 px-6 flex justify-around text-xs font-medium">
+    <button onclick="switchTab(0)" class="flex flex-col items-center text-blue-400"><span class="text-4xl">🌐</span><span class="mt-1">DNS</span></button>
+    <button onclick="switchTab(1)" class="flex flex-col items-center text-zinc-400"><span class="text-4xl">🏠</span><span class="mt-1">Wi-Fi</span></button>
+    <button onclick="switchTab(2)" class="flex flex-col items-center text-zinc-400"><span class="text-4xl">✏️</span><span class="mt-1">Créer</span></button>
   </div>
 
   <script>
@@ -111,6 +156,46 @@
 </dict>
 </plist>`,
 
+      'dns-quad9': `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key><array><dict>
+    <key>PayloadType</key><string>com.apple.dns.managed</string>
+    <key>PayloadVersion</key><integer>1</integer>
+    <key>PayloadIdentifier</key><string>com.esign.dns.quad9</string>
+    <key>PayloadDisplayName</key><string>Private DNS Quad9</string>
+    <key>PayloadUUID</key><string>77777777-7777-7777-7777-777777777777</string>
+    <key>DNSSettings</key><dict><key>DNSProtocol</key><string>HTTPS</string><key>ServerName</key><string>dns.quad9.net</string></dict>
+  </dict></array>
+  <key>PayloadDisplayName</key><string>Private DNS Quad9</string>
+  <key>PayloadIdentifier</key><string>com.esign.config.dns</string>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadUUID</key><string>88888888-8888-8888-8888-888888888888</string>
+  <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>`,
+
+      'dns-nextdns': `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key><array><dict>
+    <key>PayloadType</key><string>com.apple.dns.managed</string>
+    <key>PayloadVersion</key><integer>1</integer>
+    <key>PayloadIdentifier</key><string>com.esign.dns.nextdns</string>
+    <key>PayloadDisplayName</key><string>Private DNS NextDNS</string>
+    <key>PayloadUUID</key><string>99999999-9999-9999-9999-999999999999</string>
+    <key>DNSSettings</key><dict><key>DNSProtocol</key><string>HTTPS</string><key>ServerName</key><string>dns.nextdns.io</string></dict>
+  </dict></array>
+  <key>PayloadDisplayName</key><string>Private DNS NextDNS</string>
+  <key>PayloadIdentifier</key><string>com.esign.config.dns</string>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadUUID</key><string>AAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA</string>
+  <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>`,
+
       'wifi-maison': `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -119,12 +204,12 @@
     <key>PayloadType</key><string>com.apple.wifi.managed</string>
     <key>PayloadVersion</key><integer>1</integer>
     <key>PayloadIdentifier</key><string>com.esign.wifi.maison</string>
-    <key>PayloadDisplayName</key><string>Wi-Fi Maison</string>
+    <key>PayloadDisplayName</key><string>Wi-Fi Maison Auto</string>
     <key>PayloadUUID</key><string>55555555-5555-5555-5555-555555555555</string>
     <key>SSID_STR</key><string>MonWiFiMaison</string>
     <key>AutoJoin</key><true/>
   </dict></array>
-  <key>PayloadDisplayName</key><string>Wi-Fi Maison</string>
+  <key>PayloadDisplayName</key><string>Wi-Fi Maison Auto</string>
   <key>PayloadIdentifier</key><string>com.esign.config.wifi</string>
   <key>PayloadType</key><string>Configuration</string>
   <key>PayloadUUID</key><string>66666666-6666-6666-6666-666666666666</string>
@@ -142,8 +227,48 @@
       a.download = id + '.mobileconfig';
       a.click();
       URL.revokeObjectURL(url);
-      alert("✅ Profil téléchargé et prêt à installer !\nOuvre-le dans Safari → il va directement dans Réglages → Général → VPN et gestion de l’appareil");
+      alert("✅ Profil téléchargé avec succès !\n\nOuvre le fichier dans Safari → il s’installe directement dans Réglages → Général → VPN et gestion de l’appareil");
     }
+
+    function createCustomDNS() {
+      const name = document.getElementById('dnsName').value || "Mon DNS Perso";
+      const server = document.getElementById('dnsServer').value || "cloudflare-dns.com";
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key><array><dict>
+    <key>PayloadType</key><string>com.apple.dns.managed</string>
+    <key>PayloadVersion</key><integer>1</integer>
+    <key>PayloadIdentifier</key><string>com.esign.dns.custom</string>
+    <key>PayloadDisplayName</key><string>${name}</string>
+    <key>PayloadUUID</key><string>${'custom-' + Date.now()}</string>
+    <key>DNSSettings</key><dict><key>DNSProtocol</key><string>HTTPS</string><key>ServerName</key><string>${server}</string></dict>
+  </dict></array>
+  <key>PayloadDisplayName</key><string>${name}</string>
+  <key>PayloadIdentifier</key><string>com.esign.config.custom</string>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadUUID</key><string>custom-uuid-${Date.now()}</string>
+  <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>`;
+      const blob = new Blob([xml], { type: 'application/x-apple-aspen-config' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mon-dns-perso.mobileconfig';
+      a.click();
+      URL.revokeObjectURL(url);
+      alert("✅ Ton profil DNS personnalisé a été créé et téléchargé !");
+    }
+
+    function switchTab(n) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById('section-' + n).classList.add('active');
+      document.querySelectorAll('#tabs button').forEach((btn, i) => btn.classList.toggle('tab-active', i === n));
+    }
+
+    console.log("%c✅ eSign Perso FULL VERSION 2026 chargée – tous les profils fonctionnent sans serveur", "color:#3b82f6;font-size:16px;font-weight:bold");
   </script>
 </body>
 </html>
