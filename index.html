@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eSign Perso</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body { background: #0a0a0a; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    .header { background: linear-gradient(90deg, #1e3a8a, #3b82f6); }
+    .card { transition: all 0.3s; }
+    .card:active { transform: scale(0.96); }
+  </style>
+</head>
+<body class="pb-20">
+  <div class="header p-6 text-center">
+    <div class="flex items-center justify-center gap-3">
+      <div class="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-3xl">📱</div>
+      <h1 class="text-4xl font-semibold tracking-tighter">eSign Perso</h1>
+    </div>
+    <p class="text-blue-200 text-sm mt-1">Profils de configuration iOS</p>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 pt-8 space-y-8">
+
+    <!-- VPN Travail -->
+    <div class="card bg-zinc-900 p-6 rounded-3xl">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏢</span>
+          <div>
+            <p class="font-semibold text-lg">VPN Travail (IKEv2)</p>
+            <p class="text-zinc-400 text-sm">Serveur : placeholder-vpn.com</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="installProfile('vpn-travail')" 
+              class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">
+        Installer le profil
+      </button>
+    </div>
+
+    <!-- VPN Maison -->
+    <div class="card bg-zinc-900 p-6 rounded-3xl">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <p class="font-semibold text-lg">VPN Maison (WireGuard)</p>
+            <p class="text-zinc-400 text-sm">Toujours actif • Placeholder</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="installProfile('vpn-maison')" 
+              class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">
+        Installer le profil
+      </button>
+    </div>
+
+    <!-- Gestion Appareil -->
+    <div class="card bg-zinc-900 p-6 rounded-3xl">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚙️</span>
+          <div>
+            <p class="font-semibold text-lg">Wi-Fi Maison + DNS privé</p>
+            <p class="text-zinc-400 text-sm">Configuration automatique</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="installProfile('device-maison')" 
+              class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">
+        Installer le profil
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Navigation style eSign -->
+  <div class="fixed bottom-0 left-0 right-0 bg-black border-t border-zinc-800 py-3 px-6 flex justify-around text-xs">
+    <div class="flex flex-col items-center text-blue-400">
+      <span class="text-2xl">📋</span><span>Profils</span>
+    </div>
+    <div class="flex flex-col items-center text-zinc-400">
+      <span class="text-2xl">📦</span><span>Apps</span>
+    </div>
+    <div class="flex flex-col items-center text-zinc-400">
+      <span class="text-2xl">🔧</span><span>Signer</span>
+    </div>
+    <div class="flex flex-col items-center text-zinc-400">
+      <span class="text-2xl">⚙️</span><span>Appareil</span>
+    </div>
+  </div>
+
+  <script>
+    const profiles = {
+      'vpn-travail': `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key><string>com.apple.vpn.managed</string>
+      <key>PayloadVersion</key><integer>1</integer>
+      <key>PayloadIdentifier</key><string>com.esign.vpn.travail</string>
+      <key>PayloadDisplayName</key><string>VPN Travail</string>
+      <key>VPNType</key><string>IKEv2</string>
+      <key>RemoteAddress</key><string>placeholder-vpn.com</string>
+      <key>AuthName</key><string>user</string>
+      <key>AuthPassword</key><string>pass</string>
+      <key>OnDemandEnabled</key><integer>1</integer>
+    </dict>
+  </array>
+  <key>PayloadDisplayName</key><string>VPN Travail</string>
+  <key>PayloadIdentifier</key><string>com.esign.config.vpn</string>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>`,
+
+      'vpn-maison': `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key><string>com.apple.vpn.managed</string>
+      <key>PayloadVersion</key><integer>1</integer>
+      <key>PayloadIdentifier</key><string>com.esign.vpn.maison</string>
+      <key>PayloadDisplayName</key><string>VPN Maison</string>
+      <key>VPNType</key><string>WireGuard</string>
+      <key>RemoteAddress</key><string>placeholder-wireguard.com</string>
+    </dict>
+  </array>
+  <key>PayloadDisplayName</key><string>VPN Maison</string>
+  <key>PayloadIdentifier</key><string>com.esign.config.wireguard</string>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>`,
+
+      'device-maison': `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key><string>com.apple.wifi.managed</string>
+      <key>PayloadVersion</key><integer>1</integer>
+      <key>SSID_STR</key><string>MonWiFiMaison</string>
+      <key>AutoJoin</key><true/>
+    </dict>
+  </array>
+  <key>PayloadDisplayName</key><string>Wi-Fi Maison + DNS</string>
+  <key>PayloadIdentifier</key><string>com.esign.config.device</string>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>`
+    };
+
+    function installProfile(id) {
+      const xml = profiles[id];
+      const blob = new Blob([xml], { type: 'application/x-apple-aspen-config' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = id + '.mobileconfig';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      alert("✅ Profil téléchargé !\n\nOuvre le fichier dans Safari → il s’installe automatiquement dans :\nRéglages → Général → VPN et gestion de l’appareil");
+    }
+  </script>
+</body>
+</html>
