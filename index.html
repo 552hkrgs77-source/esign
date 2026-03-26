@@ -47,7 +47,7 @@
         <div class="flex items-center gap-3">
           <span class="text-4xl">🏠</span>
           <div>
-            <p class="font-semibold text-lg">VPN Maison (WireGuard)</p>
+            <p class="font-semibold text-lg">VPN Maison (IKEv2)</p>
             <p class="text-zinc-400 text-sm">Toujours actif • Placeholder</p>
           </div>
         </div>
@@ -108,9 +108,12 @@
       <key>PayloadDisplayName</key><string>VPN Travail</string>
       <key>PayloadUUID</key><string>11111111-1111-1111-1111-111111111111</string>
       <key>VPNType</key><string>IKEv2</string>
-      <key>RemoteAddress</key><string>placeholder-vpn.com</string>
+      <key>ServerAddress</key><string>placeholder-vpn.com</string>
+      <key>RemoteIdentifier</key><string>placeholder-vpn.com</string>
       <key>AuthName</key><string>user</string>
       <key>AuthPassword</key><string>pass</string>
+      <key>AuthenticationMethod</key><string>UsernamePassword</string>
+      <key>ExtendedAuthEnabled</key><true/>
       <key>OnDemandEnabled</key><integer>1</integer>
     </dict>
   </array>
@@ -134,8 +137,13 @@
       <key>PayloadIdentifier</key><string>com.esign.vpn.maison</string>
       <key>PayloadDisplayName</key><string>VPN Maison</string>
       <key>PayloadUUID</key><string>33333333-3333-3333-3333-333333333333</string>
-      <key>VPNType</key><string>WireGuard</string>
-      <key>RemoteAddress</key><string>placeholder-wireguard.com</string>
+      <key>VPNType</key><string>IKEv2</string>
+      <key>ServerAddress</key><string>placeholder-wireguard.com</string>
+      <key>RemoteIdentifier</key><string>placeholder-wireguard.com</string>
+      <key>AuthName</key><string>user</string>
+      <key>AuthPassword</key><string>pass</string>
+      <key>AuthenticationMethod</key><string>UsernamePassword</string>
+      <key>ExtendedAuthEnabled</key><true/>
     </dict>
   </array>
   <key>PayloadDisplayName</key><string>VPN Maison</string>
@@ -180,7 +188,7 @@
       a.click();
       URL.revokeObjectURL(url);
 
-      alert("✅ Profil téléchargé !\n\nOuvre le fichier dans Safari → il s’installe dans :\nRéglages → Général → VPN et gestion de l’appareil");
+      alert("✅ Profil téléchargé !\n\nOuvre-le dans Safari → il doit s’installer sans erreur maintenant.");
     }
   </script>
 </body>
