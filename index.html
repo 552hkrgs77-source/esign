@@ -14,31 +14,32 @@
   </style>
 </head>
 <body class="pb-20">
+
   <div class="header p-6 text-center">
     <div class="flex items-center justify-center gap-3">
       <div class="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-3xl">📱</div>
       <h1 class="text-4xl font-semibold tracking-tighter">eSign Perso</h1>
     </div>
-    <p class="text-blue-200 text-sm mt-1">Profils de configuration iOS • Prêt à l’emploi</p>
+    <p class="text-blue-200 text-sm mt-1">Profils qui marchent vraiment</p>
   </div>
 
   <div class="max-w-2xl mx-auto px-4 pt-8 space-y-8">
 
-    <!-- DNS Cloudflare -->
+    <!-- Profil 1 : DNS Cloudflare (marche à tous les coups) -->
     <div class="card bg-zinc-900 p-6 rounded-3xl">
       <div class="flex justify-between items-center mb-4">
         <div class="flex items-center gap-3">
           <span class="text-4xl">🌐</span>
           <div>
             <p class="font-semibold text-lg">Private DNS Cloudflare</p>
-            <p class="text-zinc-400 text-sm">Bloque pubs + trackers (recommandé)</p>
+            <p class="text-zinc-400 text-sm">Bloque pubs + trackers partout</p>
           </div>
         </div>
       </div>
-      <button onclick="installProfile('dns-cloudflare')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer</button>
+      <button onclick="installProfile('dns-cloudflare')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer le profil</button>
     </div>
 
-    <!-- DNS AdGuard -->
+    <!-- Profil 2 : DNS AdGuard (marche à tous les coups) -->
     <div class="card bg-zinc-900 p-6 rounded-3xl">
       <div class="flex justify-between items-center mb-4">
         <div class="flex items-center gap-3">
@@ -49,10 +50,10 @@
           </div>
         </div>
       </div>
-      <button onclick="installProfile('dns-adguard')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer</button>
+      <button onclick="installProfile('dns-adguard')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer le profil</button>
     </div>
 
-    <!-- Wi-Fi Maison -->
+    <!-- Profil 3 : Wi-Fi Maison (marche si tu changes le nom du Wi-Fi) -->
     <div class="card bg-zinc-900 p-6 rounded-3xl">
       <div class="flex justify-between items-center mb-4">
         <div class="flex items-center gap-3">
@@ -63,39 +64,9 @@
           </div>
         </div>
       </div>
-      <button onclick="installProfile('wifi-maison')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer</button>
+      <button onclick="installProfile('wifi-maison')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer le profil</button>
     </div>
 
-    <!-- DNS Quad9 (sécurité max) -->
-    <div class="card bg-zinc-900 p-6 rounded-3xl">
-      <div class="flex justify-between items-center mb-4">
-        <div class="flex items-center gap-3">
-          <span class="text-4xl">🔒</span>
-          <div>
-            <p class="font-semibold text-lg">Private DNS Quad9</p>
-            <p class="text-zinc-400 text-sm">Protection contre les menaces</p>
-          </div>
-        </div>
-      </div>
-      <button onclick="installProfile('dns-quad9')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-medium text-lg">Installer</button>
-    </div>
-
-  </div>
-
-  <!-- Navigation style eSign -->
-  <div class="fixed bottom-0 left-0 right-0 bg-black border-t border-zinc-800 py-3 px-6 flex justify-around text-xs">
-    <div class="flex flex-col items-center text-blue-400">
-      <span class="text-2xl">📋</span><span>Profils</span>
-    </div>
-    <div class="flex flex-col items-center text-zinc-400">
-      <span class="text-2xl">📦</span><span>Apps</span>
-    </div>
-    <div class="flex flex-col items-center text-zinc-400">
-      <span class="text-2xl">🔧</span><span>Signer</span>
-    </div>
-    <div class="flex flex-col items-center text-zinc-400">
-      <span class="text-2xl">⚙️</span><span>Appareil</span>
-    </div>
   </div>
 
   <script>
@@ -159,26 +130,6 @@
   <key>PayloadUUID</key><string>66666666-6666-6666-6666-666666666666</string>
   <key>PayloadVersion</key><integer>1</integer>
 </dict>
-</plist>`,
-
-      'dns-quad9': `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>PayloadContent</key><array><dict>
-    <key>PayloadType</key><string>com.apple.dns.managed</string>
-    <key>PayloadVersion</key><integer>1</integer>
-    <key>PayloadIdentifier</key><string>com.esign.dns.quad9</string>
-    <key>PayloadDisplayName</key><string>Private DNS Quad9</string>
-    <key>PayloadUUID</key><string>77777777-7777-7777-7777-777777777777</string>
-    <key>DNSSettings</key><dict><key>DNSProtocol</key><string>HTTPS</string><key>ServerName</key><string>dns.quad9.net</string></dict>
-  </dict></array>
-  <key>PayloadDisplayName</key><string>Private DNS Quad9</string>
-  <key>PayloadIdentifier</key><string>com.esign.config.dns</string>
-  <key>PayloadType</key><string>Configuration</string>
-  <key>PayloadUUID</key><string>88888888-8888-8888-8888-888888888888</string>
-  <key>PayloadVersion</key><integer>1</integer>
-</dict>
 </plist>`
     };
 
@@ -191,7 +142,7 @@
       a.download = id + '.mobileconfig';
       a.click();
       URL.revokeObjectURL(url);
-      alert("✅ Profil installé avec succès !\nVa dans Réglages → Général → VPN et gestion de l’appareil");
+      alert("✅ Profil téléchargé et prêt à installer !\nOuvre-le dans Safari → il va directement dans Réglages → Général → VPN et gestion de l’appareil");
     }
   </script>
 </body>
